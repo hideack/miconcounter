@@ -14,6 +14,9 @@ source 'https://rubygems.org'
 gem 'rake'
 gem 'tilt', '1.3.7'
 gem 'rack-env', :group => "development"
+gem 'pusher'
+gem 'eventmachine'
+gem 'em-http-request'
 
 # Component requirements
 gem 'erubis', '~> 2.7.0'
