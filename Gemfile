@@ -13,6 +13,7 @@ source 'https://rubygems.org'
 # Project requirements
 gem 'rake'
 gem 'tilt', '1.3.7'
+gem 'rack-env', :group => "development"
 
 # Component requirements
 gem 'erubis', '~> 2.7.0'

@@ -1,5 +1,7 @@
 module Miconcounter
   class App < Padrino::Application
+    use Rack::Env unless ENV['RACK_ENV'] == 'production'
+
     register Padrino::Rendering
     register Padrino::Mailer
     register Padrino::Helpers
