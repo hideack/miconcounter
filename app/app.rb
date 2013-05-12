@@ -59,5 +59,9 @@ module Miconcounter
     #     render 'errors/505'
     #   end
     #
+
+    get '/' do
+      render 'index'
+    end
   end
 end
