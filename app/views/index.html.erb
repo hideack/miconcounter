@@ -1,0 +1,22 @@
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>Micon counter</title>
+  <script type="text/javascript" src="/javascripts/jquery.js"></script>
+  <script type="text/javascript" src="/javascripts/jquery.airport-1.1.source.js"></script>
+  <script src="http://js.pusher.com/2.0/pusher.min.js" type="text/javascript"></script>
+  <script type="text/javascript">
+    // Flash fallback logging - don't include this in production
+    var pusher = new Pusher('158c5485f8999d5f9af4');
+    var channel = pusher.subscribe('counter');
+
+    channel.bind('count_up', function(data) {
+        console.log(data);
+        $('#count').html(data);
+    });
+  </script>
+</head>
+<body>
+  <div id="count"></div>
+</body>
+</html>
+
