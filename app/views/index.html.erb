@@ -9,13 +9,35 @@
     var channel = pusher.subscribe('counter');
 
     channel.bind('count_up', function(data) {
-        console.log(data);
-        $('#count').html(data);
+      var countString = String(data);
+      var structHtml = "";
+
+      for (var i=0; i<countString.length; i++) {
+        countNumber = countString.slice(i, i+1);
+        structHtml += '<img src="images/no_' + countNumber + '.png" />';
+      }
+
+      $(".counter").html(structHtml);
     });
   </script>
 </head>
 <body>
-  <div id="count">Micon counter!!</div>
+  <div class="counter">
+    <% @numberArray.each do |num| %>
+      <img src="images/no_<%= num %>.png"/>
+    <% end %>
+  </div>
+
+  <img src="images/no_0.png" style="display:none;" id="no0"/>
+  <img src="images/no_1.png" style="display:none;" id="no1"/>
+  <img src="images/no_2.png" style="display:none;" id="no2"/>
+  <img src="images/no_3.png" style="display:none;" id="no3"/>
+  <img src="images/no_4.png" style="display:none;" id="no4"/>
+  <img src="images/no_5.png" style="display:none;" id="no5"/>
+  <img src="images/no_6.png" style="display:none;" id="no6"/>
+  <img src="images/no_7.png" style="display:none;" id="no7"/>
+  <img src="images/no_8.png" style="display:none;" id="no8"/>
+  <img src="images/no_9.png" style="display:none;" id="no9"/>
 </body>
 </html>
 
