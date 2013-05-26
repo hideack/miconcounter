@@ -4,16 +4,7 @@ Miconcounter::App.controllers :count do
 
     logFile = ENV['MICONCOUNTER_COUNT_LOG']
 
-    access_count = 0
-
-    begin
-      File::open(logFile, 'r') do |file|
-        access_count = file.gets.to_i
-      end
-    rescue
-      access_count = 0
-    end
-
+    access_count = getCount()
     access_count = access_count + 1
 
     begin
