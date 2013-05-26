@@ -61,6 +61,13 @@ module Miconcounter
     #
 
     get '/' do
+      currentCount = getCount()
+      
+      @numberArray = []
+      currentCount.to_s.split(//).each do |oneNum|
+        @numberArray << oneNum
+      end
+
       render 'index'
     end
   end
