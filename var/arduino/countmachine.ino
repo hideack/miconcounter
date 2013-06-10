@@ -13,6 +13,8 @@ char serverName[256];
 char httpHeaderHost[256];
 
 EthernetClient client;
+
+boolean countReadyFlag = true;
  
 void setup()
 {
@@ -49,20 +51,21 @@ void loop()
     irVal = analogRead(SENSOR1);
     digitalWrite(LED_PIN, LOW);
     
-    if (irVal > 150 && ultrasonicVal < 75) {
-      digitalWrite(LED_PIN, HIGH);
+    if (ultrasonicVal < 50 && countReadyFlag) {
       Serial.print("Ultrasonic:");
       Serial.print(ultrasonicVal, DEC);
       Serial.print("\n");
       Serial.print("IR:");
       Serial.print(irVal, DEC);
       Serial.print("\n");
+    
+      digitalWrite(LED_PIN, HIGH);
 
       Serial.println("connecting..."); 
       if (client.connect(serverName, 80)) {
           Serial.println("connected");
           client.println("GET /count/aaa HTTP/1.1");  // カウントAPI指定
-          client.println("User-Agent: aruduino");
+          client.println("User-Agent: Pepabo MiconCounter");
           client.println(httpHeaderHost);
           client.println();
       } else {
@@ -74,7 +77,10 @@ void loop()
           Serial.print(c);
           client.stop();
           delay(500);
+          countReadyFlag = false;
       }
+    } else if (ultrasonicVal >= 50) {
+      countReadyFlag = true;
     }
 }
 
